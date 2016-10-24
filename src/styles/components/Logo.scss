@@ -1,0 +1,24 @@
+.logo__wrapper {
+  background-color: $logo-wrapper-background;
+  & .logo {
+    & .logo__symbol {
+      background-color: gray;
+    }
+    & .logo__type {
+      text-align: right;
+    }
+    & .logo__slogan {
+      display: block;
+      font-style: italic;
+      text-align: right;
+      @media (min-width: 43.75em) {
+        font-size: 1.5em;
+        line-height: 1.25;
+      }
+      @media (min-width: 56.25em) {
+        font-size: 1.75em;
+        line-height: 1.25;
+      }
+    }
+  }
+}

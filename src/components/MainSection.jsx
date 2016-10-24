@@ -6,7 +6,8 @@ export default React.createClass({
   displayName: 'MainSection',
   render: function() {
     return (
-      <div>
+      <div
+        className='app__main-section container'>
         <Breadcrumbs />
         <Content />
       </div>

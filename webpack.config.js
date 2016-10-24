@@ -14,7 +14,7 @@ const PATHS = {
     path.join(__dirname, 'bootstrap', 'dist', 'css', 'bootstrap.min.css'),
     path.join(__dirname, 'src', 'styles', 'main.css')
   ]
-}
+};
 
 const ENV = process.env;
 const TARGET = ENV.npm_lifecycle_event;
@@ -52,11 +52,11 @@ const common = {
       },
       {
         test: /\.png$/,
-        loader: "url-loader?limit=100000"
+        loader: 'url-loader?limit=100000'
       },
       {
         test: /\.jpg$/,
-        loader: "file-loader"
+        loader: 'file-loader'
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
