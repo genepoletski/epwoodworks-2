@@ -1,6 +1,6 @@
 /**
  * @module Landing
- * @class Arcticle
+ * @class Article
  *
  * React component for landing page articles
  */

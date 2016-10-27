@@ -2,6 +2,10 @@ import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+//
+// TODO Remove fake data from here on release
+// TODO Create common storage
+//
 const navTree = {
   pages: [
     {
@@ -15,6 +19,10 @@ const navTree = {
     {
       id: 'costs',
       title: 'стоимость'
+    },
+    {
+      id: 'calcs',
+      title: 'расчеты'
     },
     {
       id: 'contacts',

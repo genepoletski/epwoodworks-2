@@ -2,6 +2,7 @@
 @import "./base/typography";
 @import "./helpers/variables";
 
+/* Core components styles */
 @import "./components/common";
 @import "./components/Logo";
 @import "./components/NavMain";
@@ -10,4 +11,6 @@
 @import "./components/FooterContacts";
 @import "./components/FooterNav";
 
-@import "./modules.scss";
+/* Modules styles */
+@import "../components/modules/Landing/landing";
+@import "../components/modules/Projects/projects";

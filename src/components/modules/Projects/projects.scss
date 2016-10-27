@@ -1,0 +1,34 @@
+.mod-projects {
+  & .mod-projects__filter {
+  }
+  & .mod-projects__sort {
+    & .sort-list {
+      display: inline-block;
+      & .sort-list__item {
+        display: inline-block;
+      }
+    }
+  }
+  & .mod-projects__gallery {
+    & .gallery-item {
+      text-align: center;
+      & .gallery-item__title {
+
+      }
+      & .gallery-item__param {
+
+      }
+    }
+  }
+  & .mod-projects__pager {
+    text-align: center;
+    & .pager__pages {
+      & .pages-list {
+        display: inline-block;
+        & .pages-list__page {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

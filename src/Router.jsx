@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 import App from './App';
+import Calcs from './components/modules/Calcs/Calcs';
 import Contacts from  './components/modules/Contacts/Contacts';
 import Costs from     './components/modules/Costs/Costs';
 import Landing from   './components/modules/Landing/Landing';
@@ -19,6 +20,7 @@ export default React.createClass ({
           <Route path='/projects' component={Projects} />
           <Route path='/projects/project/:projectID' component={Project} />
           <Route path='/costs' component={Costs} />
+          <Route path='/calcs' component={Calcs} />
           <Route path='/contacts' component={Contacts} />
         </Route>
       </Router>

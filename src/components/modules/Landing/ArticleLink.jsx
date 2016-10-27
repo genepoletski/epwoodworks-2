@@ -1,6 +1,6 @@
 /**
  * @module Landing
- * @class ArcticleLink
+ * @class ArticleLink
  *
  * React component for landing page article link
  */
@@ -17,7 +17,7 @@ export default React.createClass({
     return (
       <Link
         to={this.props.path}>
-        {this.props.text}
+        {this.props.text || 'подробнее...'}
       </Link>
     );
   }
