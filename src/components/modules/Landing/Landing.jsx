@@ -6,67 +6,57 @@
  */
 
 import React from 'react';
+import Article from './Article';
+
+//
+// TODO Remove fake articles data on release
+// TODO Add text markup capability
+//
+const content = {
+  articles: [
+    {
+      title: 'Каталог проектов',
+      text: 'Изучайте проекты реальных деревянных домов, бань и прочих построек и конструкций. Используйте фильтры для поиска по заданным параметрам. Сохраняйте ссылки на понравивишиеся проекты и обменивайтесь ими. Получайте объемы основных материалов и конструкций для оценки стоимости строительства и проектирования таких же или аналогичных домов и бань.',
+      link: {
+        path: '/projects',
+        text: 'подробнее...'
+      }
+    },
+    {
+      title: 'Оценка стоимости',
+      text: 'Получите оценочный расчет стоимости проектирования и строительства деревянного дома или бани. Меняйте параметры проекта под свои нужды и выбирайте итоговый вариант. Определяйтесь с окончательным решением, которое максимально соотвествует вашей ситуации, и получайте его стоимость. Сохраняйте ссылки на различные варианты расчетов.',
+      link: {
+        path: '/costs',
+        text: 'подробнее...'
+      }
+    },
+    {
+      title: 'Расчет балок',
+      text: 'Проверяйте, можно ли использовать деревянную балку с заданными параметрами в вашей конкретной ситуации. Задавайте или выбирайте нагрузки от конструкций и снега. Меняйте состав конструкций в соответствии с вашими требованиями и видениями. Сохраняйте ссылки на результаты расчетов чтобы всегда иметь несколько альтернатив под рукой.',
+      link: {
+        path: '/calcs',
+        text: 'подробнее...'
+      }
+    }
+  ]
+};
 
 export default React.createClass({
   displayName: 'Landing',
   render: function() {
+    const ArticleNodes = content.articles.map((article, i) => {
+      return (
+        <Article
+          key={i}
+          className='col-md-4' {...article} />
+      );
+    });
     return (
       <div
         className='container'>
-        <h2>Лэндинг</h2>
         <div
           className='row'>
-          <div
-            className="col-md-4">
-            <h3>Heading 03-01</h3>
-            <p
-              className='lead'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Integer vehicula lorem leo, non luctus elit fringilla sit amet.
-              Phasellus faucibus, felis sed eleifend scelerisque, arcu nunc
-              dignissim elit, a vestibulum dolor elit ac risus. Integer accumsan
-               velit vitae massa egestas, nec efficitur quam sollicitudin.
-               Nullam ut tortor tempus, rutrum augue quis, dapibus turpis.
-               Sed tincidunt ex augue, in elementum massa ultrices id. Nulla
-               mattis scelerisque bibendum. Duis tristique odio ut nibh maximus
-               dignissim. Morbi vitae ornare dui, nec scelerisque est. Nulla ut
-               magna diam.
-            </p>
-          </div>
-          <div
-            className="col-md-4">
-            <h3>Heading 03-02</h3>
-              <p
-                className='lead'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Integer vehicula lorem leo, non luctus elit fringilla sit amet.
-                Phasellus faucibus, felis sed eleifend scelerisque, arcu nunc
-                dignissim elit, a vestibulum dolor elit ac risus. Integer accumsan
-                 velit vitae massa egestas, nec efficitur quam sollicitudin.
-                 Nullam ut tortor tempus, rutrum augue quis, dapibus turpis.
-                 Sed tincidunt ex augue, in elementum massa ultrices id. Nulla
-                 mattis scelerisque bibendum. Duis tristique odio ut nibh maximus
-                 dignissim. Morbi vitae ornare dui, nec scelerisque est. Nulla ut
-                 magna diam.
-              </p>
-          </div>
-          <div
-            className="col-md-4">
-            <h3>Heading 03-03</h3>
-              <p
-                className='lead'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Integer vehicula lorem leo, non luctus elit fringilla sit amet.
-                Phasellus faucibus, felis sed eleifend scelerisque, arcu nunc
-                dignissim elit, a vestibulum dolor elit ac risus. Integer accumsan
-                 velit vitae massa egestas, nec efficitur quam sollicitudin.
-                 Nullam ut tortor tempus, rutrum augue quis, dapibus turpis.
-                 Sed tincidunt ex augue, in elementum massa ultrices id. Nulla
-                 mattis scelerisque bibendum. Duis tristique odio ut nibh maximus
-                 dignissim. Morbi vitae ornare dui, nec scelerisque est. Nulla ut
-                 magna diam.
-              </p>
-          </div>
+          {ArticleNodes}
         </div>
       </div>
     );

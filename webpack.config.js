@@ -95,8 +95,7 @@ const common = {
   resolve: {
     alias: {
       libs: PATHS.libs,
-      components: path.join(PATHS.src, 'components'),
-      models: path.join(PATHS.src, 'models')
+      components: path.join(PATHS.src, 'components')
     },
     extensions: ['', '.js', '.jsx']
   }
