@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default React.createClass({
   displayName: 'NavMain',
@@ -12,11 +13,9 @@ export default React.createClass({
         <li
           className='nav-main__top-list-item'
           key={i}>
-          <a
-            className='nav-main__top-list-item-title'
-            href={'#' + page.id}>
-            {page.title}
-          </a>
+          <Link
+            className='nav-main__top-list-item-text'
+            to={'/' + page.id}>{page.title}</Link>
         </li>
       );
     });

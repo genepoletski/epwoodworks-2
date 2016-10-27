@@ -9,14 +9,14 @@
     margin: 0;
     & .nav-main__top-list-item {
       display: inline-block;
+      font-size: 1.5em;
       &:not(:first-child) {
         padding-left: 10px;
       }
       &:not(:last-child) {
         padding-right: 10px;
       }
-      & .nav-main__top-list-item-title {
-        font-size: 1.5em;
+      & .nav-main__top-list-item-text {
         color: $nav-main-top-item-color;
         &:hover {
           color: $nav-main-top-item-color--hover;

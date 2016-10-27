@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './components/Header';
-import MainSection from './components/MainSection';
 import Footer from './components/Footer';
 
 const navTree = {
@@ -26,12 +25,17 @@ const navTree = {
 
 export default React.createClass({
   displayName: 'App',
+  propTypes: {
+    children: React.PropTypes.element.isRequired
+  },
   render: function() {
     return (
       <div>
-        <Header navTree={navTree}/>
-        <MainSection />
-        <Footer navTree={navTree}/>
+        <Header navTree={navTree} />
+        <div className='app__main-section'>
+          {this.props.children}
+        </div>
+        <Footer navTree={navTree} />
       </div>
     );
   }

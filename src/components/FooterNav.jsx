@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default React.createClass({
   displayName: 'FooterNav',
@@ -16,11 +17,9 @@ export default React.createClass({
           <li
             className='footer-nav__list-item'
             key={i + startIndex}>
-            <a
-              className='footer-nav__list-item-title'
-              href={'#' + navItems[i].id}>
-              {navItems[i].title}
-            </a>
+            <Link
+              className='footer-nav__list-item-text'
+              to={'/' + navItems[i].id}>{navItems[i].title}</Link>
           </li>
         );
       }

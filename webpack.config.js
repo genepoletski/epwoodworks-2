@@ -29,7 +29,8 @@ const common = {
   },
   output: {
     path: PATHS.build,
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: '/'
   },
   module: {
     preLoaders: [
