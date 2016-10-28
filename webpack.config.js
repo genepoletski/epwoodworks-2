@@ -9,6 +9,7 @@ const stylelint = require('stylelint');
 const PATHS = {
   build: path.join(__dirname, 'build'),
   libs: path.join(__dirname, 'libs'),
+  assets: path.join(__dirname, 'assets'),
   src: path.join(__dirname, 'src'),
   style: [
     path.join(__dirname, 'bootstrap', 'dist', 'css', 'bootstrap.min.css'),
@@ -94,6 +95,7 @@ const common = {
   ],
   resolve: {
     alias: {
+      assets: PATHS.assets,
       libs: PATHS.libs,
       components: path.join(PATHS.src, 'components')
     },

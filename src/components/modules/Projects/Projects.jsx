@@ -6,6 +6,165 @@
  */
 import React from 'react';
 
+import expect from 'expect';
+
+import Gallery from './Gallery';
+import Filters from './Filters';
+import Pager from './Pager';
+import Sort from './Sort';
+
+const data = {
+  assets_path: 'assets/app_modules/mod_projects',
+  projects: [
+    {
+      id: 'pb_15001',
+      title: 'ПБ-15.001',
+      img: 'pb_15001.jpg',
+      params: {
+        area: 100,
+        floors: 1,
+        type: [
+          'house'
+        ],
+        techs: [
+          'profiled_beam'
+        ],
+        status: 'построен 2016-II'
+      }
+    },
+    {
+      id: 'pb_15002',
+      title: 'ПБ-15.002',
+      img: 'pb_15002.jpg',
+      params: {
+        area: 150,
+        floors: 2,
+        type: [
+          'house'
+        ],
+        techs: [
+          'profiled_beam'
+        ],
+        status: 'построен 2016-III'
+      }
+    },
+    {
+      id: 'pb_15003',
+      title: 'ПБ-15.003',
+      img: 'pb_15003.jpg',
+      params: {
+        area: 180,
+        floors: 2,
+        type: [
+          'house'
+        ],
+        techs: [
+          'profiled_beam',
+          'aerial_concrete'
+        ],
+        status: 'построен 2016-IV'
+      }
+    },
+  ],
+  filters: [
+
+  ],
+  sort: [
+
+  ],
+  pager: [
+
+  ]
+};
+
+const translateTech = function( tech ) {
+  const dictionary = {
+    aerial_concrete: 'газобетон',
+    profiled_beam: 'профилированный брус'
+  };
+  const translatedTech = dictionary[tech] || tech;
+  return translatedTech;
+};
+
+const convertProjects = ( projects ) => {
+  const transformParams = ( params ) => {
+    const params_rev = {};
+    let techs = '';
+    params_rev.area = String(params.area);
+    params_rev.status = params.status;
+    params.techs.forEach( (tech, i, arr) => {
+      techs += translateTech( tech );
+      if ( arr.length > 1 && i < arr.length - 1) { techs += ', '; }
+    } );
+    params_rev.techs = techs;
+    return params_rev;
+  };
+  const projects_rev = projects.map( (project) => {
+    const project_rev = {};
+
+    for (let prop in project) {
+      switch (prop) {
+        case 'img':
+          project_rev[prop] = data.assets_path;
+          project_rev[prop] += '/gallery_imgs/' + project[prop];
+          break;
+        case 'params':
+          project_rev[prop] = transformParams( project[prop] );
+          break;
+        default:
+          project_rev[prop] = project[prop];
+      }
+    }
+
+    return project_rev;
+  } );
+  return projects_rev;
+};
+
+const testConvertProjects = () => {
+  const projectsBefore = [
+    {
+      id: 'pb_15001',
+      title: 'ПБ-15.001',
+      img: 'pb_15001.jpg',
+      params: {
+        area: 100,
+        floors: 1,
+        type: [
+          'house'
+        ],
+        techs: [
+          'profiled_beam',
+          'aerial_concrete'
+        ],
+        status: 'построен 2016-II'
+      }
+    }
+  ];
+  const projectsAfter = [
+    {
+      id: 'pb_15001',
+      title: 'ПБ-15.001',
+      img: 'assets/app_modules/mod_projects/gallery_imgs/pb_15001.jpg',
+      params: {
+        area: '100',
+        techs: 'профилированный брус, газобетон',
+        status: 'построен 2016-II'
+      }
+    }
+  ];
+
+  Object.freeze(projectsBefore);
+
+  expect(
+    convertProjects(projectsBefore)
+  ).toEqual(projectsAfter);
+};
+
+testConvertProjects();
+
+console.log('All tests passed.');
+
 export default React.createClass({
   displayName: 'Projects',
   render() {
@@ -16,195 +175,13 @@ export default React.createClass({
           Проекты домов и бань
         </h2>
         <div className='row'>
-
-          <form
-            className='col-md-3 mod-projects__filter'>
-            <fieldset
-              className='filter__field'>
-              <legend>площадь</legend>
-              <label>от <input type='number' /></label>
-              <label>до <input type='number' /></label>
-            </fieldset>
-            <fieldset
-              className='filter__field'>
-              <legend>этажи</legend>
-              <label><input type='checkbox' />1</label>
-              <label><input type='checkbox' />2</label>
-            </fieldset>
-            <fieldset
-              className='filter__field'>
-              <legend>тип</legend>
-              <label><input type='checkbox' />дом</label>
-              <label><input type='checkbox' />баня</label>
-            </fieldset>
-            <fieldset
-              className='filter__field'>
-              <legend>технология</legend>
-              <label><input type='checkbox' />профилированный брус</label>
-              <label><input type='checkbox' />каркас</label>
-              <label><input type='checkbox' />газобетон</label>
-            </fieldset>
-            <div>
-              <button>применить</button>
-              <button>сбросить</button>
-            </div>
-          </form>
-
+          <Filters className='col-md-3'/>
           <div className='col-md-9'>
-
-            <div className='mod-projects__sort'>
-              сортировать
-              <ul
-                className='sort-list'>
-                <li
-                  className='sort-list__item'>
-                  площадь
-                </li>
-                <li
-                  className='sort-list__item'>
-                  технология
-                </li>
-                <li
-                  className='sort-list__item'>
-                  наименование
-                </li>
-              </ul>
-            </div>
-
-            <div className='row mod-projects__gallery'>
-
-              <div className='col-md-4 gallery-item'>
-                <img src='#' />
-                <h4
-                  className='gallery-item__title'>
-                  проект ПБ-001
-                </h4>
-                <span
-                  className='gallery-item__param'>
-                  100 м2
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  профилированный брус
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  построен 2016-III
-                </span>
-              </div>
-
-              <div className='col-md-4 gallery-item'>
-                <img src='#' />
-                <h4
-                  className='gallery-item__title'>
-                  проект ПБ-001
-                </h4>
-                <span
-                  className='gallery-item__param'>
-                  100 м2
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  профилированный брус
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  построен 2016-III
-                </span>
-              </div>
-
-              <div className='col-md-4 gallery-item'>
-                <img src='#' />
-                <h4
-                  className='gallery-item__title'>
-                  проект ПБ-001
-                </h4>
-                <span
-                  className='gallery-item__param'>
-                  100 м2
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  профилированный брус
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  построен 2016-III
-                </span>
-              </div>
-
-              <div className='col-md-4 gallery-item'>
-                <img src='#' />
-                <h4
-                  className='gallery-item__title'>
-                  проект ПБ-001
-                </h4>
-                <span
-                  className='gallery-item__param'>
-                  100 м2
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  профилированный брус
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  построен 2016-III
-                </span>
-              </div>
-
-              <div className='col-md-4 gallery-item'>
-                <img src='#' />
-                <h4
-                  className='gallery-item__title'>
-                  проект ПБ-001
-                </h4>
-                <span
-                  className='gallery-item__param'>
-                  100 м2
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  профилированный брус
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  построен 2016-III
-                </span>
-              </div>
-
-              <div className='col-md-4 gallery-item'>
-                <img src='#' />
-                <h4
-                  className='gallery-item__title'>
-                  проект ПБ-001
-                </h4>
-                <span
-                  className='gallery-item__param'>
-                  100 м2
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  профилированный брус
-                </span>
-                <span
-                  className='gallery-item__param'>
-                  построен 2016-III
-                </span>
-              </div>
-
-            </div>
-
-            <div className='row mod-projects__pager'>
-              <div className='pager__pages'>
-                <ul className='pages-list'>
-                  <li className='pages-list__page'>1</li>
-                  <li className='pages-list__page'>2</li>
-                  <li className='pages-list__page'>3</li>
-                </ul>
-              </div>
-            </div>
-
+            <Sort />
+            <Gallery
+              className='row mod-projects__gallery'
+              projects={convertProjects(data.projects)} />
+            <Pager className='row mod-projects__pager' />
           </div>
         </div>
       </div>

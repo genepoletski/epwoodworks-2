@@ -1,5 +1,18 @@
+$field-title-color: #424242;
+
 .mod-projects {
   & .mod-projects__filter {
+    border: 1px solid gray;
+    border-radius: 4px;
+    & .filter__field {
+      & .field__title {
+        color: $field-title-color;
+        font-weight: 700;
+      }
+      & .field__param {
+
+      }
+    }
   }
   & .mod-projects__sort {
     & .sort-list {
