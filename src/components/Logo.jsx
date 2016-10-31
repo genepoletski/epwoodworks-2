@@ -16,7 +16,7 @@ export default React.createClass({
             </h1>
             <span
               className='logo__slogan'>
-              с вниманием к мелочам
+              с профессиональным подходом
             </span>
           </div>
         </div>

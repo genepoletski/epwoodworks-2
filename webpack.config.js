@@ -129,7 +129,13 @@ switch (TARGET) {
       }),
       parts.minify(),
       parts.extractCSS(PATHS.style),
-      parts.purifyCSS([PATHS.src])
+      parts.purifyCSS([PATHS.src]),
+      parts.copyStatic([
+        {
+          from: PATHS.assets,
+          to: 'assets'
+        }
+      ])
     );
     break;
   default:

@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 exports.devServer = function(options) {
   return {
@@ -145,6 +146,14 @@ exports.purifyCSS = function(paths) {
           info: true
         }
       })
+    ]
+  };
+};
+
+exports.copyStatic = function(patterns) {
+  return {
+    plugins: [
+      new CopyWebpackPlugin(patterns)
     ]
   };
 };

@@ -23,7 +23,7 @@ export default React.createClass({
     return (
       <div
         className={this.props.className + ' gallery-item'}>
-        <img src={this.props.img} />
+        <img src={this.props.img}/>
         <h4
           className='gallery-item__title'>
           {this.props.title}
