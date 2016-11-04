@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import Slider from './Slider';
 import Article from './Article';
 
 //
@@ -38,6 +39,23 @@ const content = {
   ]
 };
 
+const sliderData = {
+  slides: [
+    {
+      path: 'assets/app_modules/mod_landing/slider_imgs/slide_01.jpg'
+    },
+    {
+      path: 'assets/app_modules/mod_landing/slider_imgs/slide_02.jpg'
+    },
+    {
+      path: 'assets/app_modules/mod_landing/slider_imgs/slide_03.jpg'
+    },
+    {
+      path: 'assets/app_modules/mod_landing/slider_imgs/slide_04.jpg'
+    }
+  ]
+};
+
 export default React.createClass({
   displayName: 'Landing',
   render: function() {
@@ -51,6 +69,9 @@ export default React.createClass({
     return (
       <div
         className='container'>
+        <div className='row'>
+          <Slider className='col-md-12' {...sliderData} />
+        </div>
         <div
           className='row'>
           {ArticleNodes}
