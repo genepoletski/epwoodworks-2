@@ -1,0 +1,6 @@
+{
+  "name": "Epwoodworks-2",
+  "tagline": "Site redesign: SPA on React/Redux",
+  "body": "# epwoodworks-2\r\nSite redesign: SPA on React/Redux\r\n\r\n## Project features\r\n\r\nFeature | Details | Status\r\n--------|---------|--------\r\nLanding | Landing page with responsive slider | in progress\r\nProjects | Project collection with filtering and pagination | sheduled\r\nCosts | Costs estimating calculator | sheduled\r\nBeams | Wooden beams engeneering calculator | sheduled\r\nContacts | Contact form and location map | sheduled\r\n\r\n## Technologies\r\n- React\r\n- React-Router\r\n- Redux\r\n- Bootstrap (grid system)\r\n\r\n## Project test URI\r\nhttp://www.woodhousepro.ru\r\n\r\n## Git pages\r\n\r\n## Releases\r\nIn development ...\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
