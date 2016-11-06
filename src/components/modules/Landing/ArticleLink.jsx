@@ -9,10 +9,12 @@ import { Link } from 'react-router';
 
 export default React.createClass({
   displayName: 'ArcticleLink',
+  
   propTypes: {
     path: React.PropTypes.string.isRequired,
     text: React.PropTypes.string
   },
+
   render() {
     return (
       <Link

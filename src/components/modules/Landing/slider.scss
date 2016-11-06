@@ -1,0 +1,27 @@
+.slides-group,
+.slide {
+  width: 100%;
+  height: 100%;
+}
+
+.slide-viewer {
+  overflow: hidden;
+  position: relative;
+}
+
+.slide-group {
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+}
+
+.slide:first-child {
+  display: block;
+}
+
+.slide-buttons {
+  position: absolute;
+  bottom: 5%;
+}

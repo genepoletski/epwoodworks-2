@@ -1,8 +1,10 @@
-.mod__landing--em {
-  font-style: italic;
+@import 'slider.scss';
+
+.mod-landing__articles {
+  margin-top: 2em;
 }
 
-.mod__landing__article__link {
+.article-link {
   display: block;
   text-align: right;
 }

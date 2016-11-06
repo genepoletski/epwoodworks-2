@@ -13,7 +13,8 @@ export default React.createClass({
   displayName: 'Slider',
 
   propTypes: {
-    className: React.PropTypes.string
+    className: React.PropTypes.string,
+    slides: React.PropTypes.arrayOf( React.PropTypes.object ).isRequired
   },
 
   getInitialState() {
@@ -26,19 +27,20 @@ export default React.createClass({
       animationSteps: 50,
       containerWidth: null,
       animateReverse: false,
-      isAnimating: false
+      isAnimating: false,
+      leftButtons: null
     });
   },
 
   componentDidMount() {
-    this.setState({
-      containerWidth: this.slidesContainer.offsetWidth
-    });
+    window.addEventListener('resize', this.updateDimensions);
+    this.updateDimensions();
     this.startMainTimer();
   },
 
   componentWillUnmount() {
     clearTimeout(this.mainTimer);
+    window.removeEventListener('resize', this.updateDimensions);
   },
 
   startMainTimer() {
@@ -147,26 +149,32 @@ export default React.createClass({
     this.changeSlide(reqID);
   },
 
+  updateDimensions() {
+    const sliderWidth = this.sliderContainer.offsetWidth;
+    const buttonsWidth = this.buttonsContainer.offsetWidth;
+    this.setState({
+      containerWidth: sliderWidth,
+      leftButtons: ( sliderWidth - buttonsWidth ) / 2
+    });
+  },
+
   render() {
     const slides = this.props.slides;
     const widthRatio = this.state.widthRatio;
-    const animateReverse = this.state.animateReverse;
 
-    let firstSlideID, secondSlideID, firstWidth, secondWidth, xOffset;
+    let firstSlideID, secondSlideID, leftFirst, leftSecond;
 
-    if (!animateReverse) {
+    if (!this.state.animateReverse) {
       firstSlideID = 'currID';
       secondSlideID = 'nextID';
-      firstWidth = 100 - widthRatio + '%';
-      secondWidth = widthRatio + '%';
-      xOffset = -this.state.containerWidth * widthRatio / 100 + 'px';
+      leftFirst = - widthRatio + '%';
+      leftSecond = 100 - widthRatio + '%';
     }
     else {
       firstSlideID = 'nextID';
       secondSlideID = 'currID';
-      firstWidth = widthRatio + '%';
-      secondWidth = 100 - widthRatio + '%';
-      xOffset = -this.state.containerWidth * (100 - widthRatio) / 100 + 'px';
+      leftFirst = - 100 + widthRatio + '%';
+      leftSecond = widthRatio + '%';
     }
 
     const buttonNodes = slides.map( (slide, i) => {
@@ -181,45 +189,57 @@ export default React.createClass({
     });
 
     return (
-      <div className={this.props.className}>
+      <div
+        className={
+          this.props.className + ' slide-viewer'
+        }
+        style={{
+          height: this.state.containerWidth / 3
+        }}
+        ref={(sliderContainer) => this.sliderContainer = sliderContainer}
+        >
 
         <div
-          ref={(slidesContainer) => this.slidesContainer = slidesContainer}
-          style={{
-            textAlign: 'center'
-          }}
+          className='slides-group'
           >
 
           <div
+            className='slide'
             style={{
-              overflow: 'hidden',
-              width: firstWidth,
-              float: 'left'
+              left: leftFirst
             }}
             >
             <img
-              src={slides[this.state[firstSlideID]].path}
               style={{
-                position: 'relative',
-                left: xOffset
+                width: '100%'
               }}
+              src={slides[this.state[firstSlideID]].path}
              />
           </div>
 
           <div
+            className='slide'
             style={{
-              overflow: 'hidden',
-              width: secondWidth
+              left: leftSecond
             }}
             >
             <img
+              style={{
+                width: '100%'
+              }}
               src={slides[this.state[secondSlideID]].path}
               />
           </div>
 
         </div>
 
-        <div>
+        <div
+          className='slide-buttons'
+          ref={(buttonsContainer) => this.buttonsContainer = buttonsContainer}
+          style={{
+            left: this.state.leftButtons
+          }}
+          >
           <button
             onClick={(e) => this.handleButtonClick('prev')}
             >&lt;

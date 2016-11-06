@@ -58,6 +58,7 @@ const sliderData = {
 
 export default React.createClass({
   displayName: 'Landing',
+
   render: function() {
     const ArticleNodes = content.articles.map((article, i) => {
       return (
@@ -70,10 +71,10 @@ export default React.createClass({
       <div
         className='container'>
         <div className='row'>
-          <Slider className='col-md-12' {...sliderData} />
+          <Slider className='col-xs-12' {...sliderData} />
         </div>
         <div
-          className='row'>
+          className='row mod-landing__articles'>
           {ArticleNodes}
         </div>
       </div>
