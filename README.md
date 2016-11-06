@@ -21,6 +21,7 @@ Contacts | Contact form and location map | sheduled
 http://www.woodhousepro.ru
 
 ## Git pages
+https://web-developer-poletski.github.io/epwoodworks-2/
 
 ## Releases
 In development ...
