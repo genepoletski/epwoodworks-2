@@ -179,12 +179,13 @@ export default React.createClass({
 
     const buttonNodes = slides.map( (slide, i) => {
       return (
-        <button
+        <span
           key={i}
+          className={ i === this.state.currID ? 'slide-button button--active' : 'slide-button' }
           onClick={(e) => this.handleButtonClick(i)}
           >
-          {i}
-        </button>
+          { i === this.state.currID ? '◼' : '■' }
+        </span>
       );
     });
 
@@ -240,15 +241,17 @@ export default React.createClass({
             left: this.state.leftButtons
           }}
           >
-          <button
+          <span
+            className='slide-button'
             onClick={(e) => this.handleButtonClick('prev')}
-            >&lt;
-          </button>
+            >&#10096;
+          </span>
           {buttonNodes}
-          <button
+          <span
+            className='slide-button'
             onClick={(e) => this.handleButtonClick('next')}
-            >&gt;
-          </button>
+            >&#10097;
+          </span>
         </div>
       </div>
     );
