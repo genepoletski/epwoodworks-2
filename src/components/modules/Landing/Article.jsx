@@ -30,6 +30,7 @@ export default React.createClass({
         className={this.props.className + ' article'}>
         <h3>{this.props.title}</h3>
         <div
+          className='article-text'
           dangerouslySetInnerHTML={this.createMarkup(this.props.text)}>
         </div>
         <span className='article-link'>
