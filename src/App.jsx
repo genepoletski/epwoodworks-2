@@ -1,8 +1,11 @@
 import React from 'react';
 import Header from './components/Header';
-import MainSection from './components/MainSection';
 import Footer from './components/Footer';
 
+//
+// TODO Remove fake data from here on release
+// TODO Create common storage
+//
 const navTree = {
   pages: [
     {
@@ -18,6 +21,10 @@ const navTree = {
       title: 'стоимость'
     },
     {
+      id: 'calcs',
+      title: 'расчеты'
+    },
+    {
       id: 'contacts',
       title: 'контакты'
     }
@@ -26,12 +33,17 @@ const navTree = {
 
 export default React.createClass({
   displayName: 'App',
+  propTypes: {
+    children: React.PropTypes.element.isRequired
+  },
   render: function() {
     return (
       <div>
-        <Header navTree={navTree}/>
-        <MainSection />
-        <Footer navTree={navTree}/>
+        <Header navTree={navTree} />
+        <div className='app__main-section'>
+          {this.props.children}
+        </div>
+        <Footer navTree={navTree} />
       </div>
     );
   }

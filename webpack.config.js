@@ -9,12 +9,13 @@ const stylelint = require('stylelint');
 const PATHS = {
   build: path.join(__dirname, 'build'),
   libs: path.join(__dirname, 'libs'),
+  assets: path.join(__dirname, 'assets'),
   src: path.join(__dirname, 'src'),
   style: [
     path.join(__dirname, 'bootstrap', 'dist', 'css', 'bootstrap.min.css'),
     path.join(__dirname, 'src', 'styles', 'main.css')
   ]
-}
+};
 
 const ENV = process.env;
 const TARGET = ENV.npm_lifecycle_event;
@@ -29,7 +30,8 @@ const common = {
   },
   output: {
     path: PATHS.build,
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: '/'
   },
   module: {
     preLoaders: [
@@ -52,11 +54,11 @@ const common = {
       },
       {
         test: /\.png$/,
-        loader: "url-loader?limit=100000"
+        loader: 'url-loader?limit=100000'
       },
       {
         test: /\.jpg$/,
-        loader: "file-loader"
+        loader: 'file-loader'
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
@@ -93,9 +95,9 @@ const common = {
   ],
   resolve: {
     alias: {
+      assets: PATHS.assets,
       libs: PATHS.libs,
-      components: path.join(PATHS.src, 'components'),
-      models: path.join(PATHS.src, 'models')
+      components: path.join(PATHS.src, 'components')
     },
     extensions: ['', '.js', '.jsx']
   }
@@ -127,7 +129,13 @@ switch (TARGET) {
       }),
       parts.minify(),
       parts.extractCSS(PATHS.style),
-      parts.purifyCSS([PATHS.src])
+      parts.purifyCSS([PATHS.src]),
+      parts.copyStatic([
+        {
+          from: PATHS.assets,
+          to: 'assets'
+        }
+      ])
     );
     break;
   default:

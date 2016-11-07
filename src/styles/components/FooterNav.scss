@@ -1,0 +1,12 @@
+.footer-nav {
+  & .footer-nav__list {
+    & .footer-nav__list-item {
+      & .footer-nav__list-item-text {
+        color: $footer-nav-item-color;
+        &:hover {
+          color: $footer-nav-item-color--hover;
+        }
+      }
+    }
+  }
+}

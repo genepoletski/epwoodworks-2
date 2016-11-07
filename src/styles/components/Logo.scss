@@ -1,0 +1,39 @@
+.logo__wrapper {
+  background-color: $logo-wrapper-background;
+  & .logo {
+    margin-top: 25px;
+    & .logo-symbol {
+      text-align: center;
+      margin-top: 2px;
+      @extend h1;
+      & :first-child {
+        padding: 0 8px;
+        color: $primary-light;
+        background-color: $primary-mid;
+      }
+      & :last-child {
+        padding: 0 8px;
+        color: $primary-mid;
+        background-color: $primary-light;
+      }
+    }
+    & .logo-type {
+      text-align: right;
+      padding-left: 10px;
+    }
+    & .logo-slogan {
+      display: block;
+      margin: -10px 0 10px 0;
+      font-style: italic;
+      text-align: right;
+      @media (min-width: 43.75em) {
+        font-size: 1.5em;
+        line-height: 1.25;
+      }
+      @media (min-width: 56.25em) {
+        font-size: 1.75em;
+        line-height: 1.25;
+      }
+    }
+  }
+}

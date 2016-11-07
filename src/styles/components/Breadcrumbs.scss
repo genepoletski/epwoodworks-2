@@ -1,0 +1,13 @@
+.breadcrumbs {
+  & .breadcrumbs__item {
+    display: inline-block;
+    padding-right: 5px;
+    &:not(:last-child):after {
+      content: ' \25b6';
+      vertical-align: middle;
+    }
+    & .breadcrumbs__item-title {
+      color: $breadcrumble-item-color;
+    }
+  }
+}
