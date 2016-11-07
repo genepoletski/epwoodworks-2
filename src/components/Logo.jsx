@@ -6,20 +6,23 @@ export default React.createClass({
     return (
       <div
         className='logo row'>
-        <img
-          className='logo__symbol col-md-3'
-          src="#" />
-          <div className='col-md-9'>
-            <h1
-              className='logo__type'>
-              Проекты деревянных домов и бань
-            </h1>
-            <span
-              className='logo__slogan'>
-              с профессиональным подходом
-            </span>
-          </div>
+        <div
+          className='logo-symbol col-sm-12 col-md-4 col-lg-3'
+          >
+          <span>Woodhouse</span>
+          <span>PRO</span>
         </div>
+        <div className='col-xs-12 col-md-8 col-lg-9'>
+          <h1
+            className='logo-type'>
+            Проекты деревянных домов и бань
+          </h1>
+          <span
+            className='logo-slogan'>
+            с профессиональным подходом
+          </span>
+        </div>
+      </div>
     );
   }
 });
