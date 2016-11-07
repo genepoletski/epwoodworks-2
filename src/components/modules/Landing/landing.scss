@@ -1,7 +1,17 @@
 @import 'slider.scss';
 
 .mod-landing__articles {
-  margin-top: 2em;
+  margin: 24px 0 36px 0;
+  & h3 {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+  & ul {
+    text-align: center;
+    & li {
+      padding: 6px 20px;
+    }
+  }
 }
 
 .article-link {
